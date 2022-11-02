@@ -9,6 +9,7 @@ const {toString: uint8ArrayToString} = require("uint8arrays/to-string");
 
 export default class Home extends Component {
     db = null;
+    orbitdb = null;
 
     async componentDidMount() {
         const {Ed25519Provider} = require("key-did-provider-ed25519");
@@ -102,14 +103,14 @@ export default class Home extends Component {
         // }, 10000);
 
         // Create OrbitDB instance
-        const orbitdb = await OrbitDB.createInstance(ipfs, {
+        this.orbitdb = await OrbitDB.createInstance(ipfs, {
             identity: thisIdentity,
         });
 
-        this.db = await orbitdb.feed("orbit-db.issues7");
+        this.db = await this.orbitdb.feed("orbit-db.issues7");
         await this.db.load();
         window.document.getElementById("test1").innerText = JSON.stringify(
-            orbitdb.identity
+            this.orbitdb.identity
         );
         // const hash = await this.db.add("hello Usman! " + Date.now());
         // const event = this.db.get(hash).payload.value; //.map((e) => e.payload.value);
@@ -143,7 +144,7 @@ export default class Home extends Component {
     }
 
     getPeers = async () => {
-        console.log('peers', this.db._oplog._oplog.peers);
+        console.log('peers', await this.orbitdb._ipfs.swarm.peers());
     }
 
     render() {
