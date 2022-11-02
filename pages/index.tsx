@@ -106,7 +106,7 @@ export default class Home extends Component {
             identity: thisIdentity,
         });
 
-        this.db = await orbitdb.feed("orbit-db.issues4");
+        this.db = await orbitdb.feed("orbit-db.issues6");
         await this.db.load();
         window.document.getElementById("test1").innerText = JSON.stringify(
             orbitdb.identity
@@ -114,7 +114,7 @@ export default class Home extends Component {
         // const hash = await this.db.add("hello Usman! " + Date.now());
         // const event = this.db.get(hash).payload.value; //.map((e) => e.payload.value);
         // console.log("event", event, hash, this.db.get(hash).payload);
-        console.log("db", this.db.get(""));
+        // console.log("db", this.db.get(""));
         // setInterval(async () => {
         //   // get all entries
         // const entries = db.iterator({ limit: -1 }).collect()
@@ -139,7 +139,7 @@ export default class Home extends Component {
     }
 
     addData = () => {
-        this.db.add("hello Home! " + Date.now());
+        this.db.add("hello Office! " + Date.now());
     }
 
     getPeers = async () => {
