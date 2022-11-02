@@ -106,7 +106,7 @@ export default class Home extends Component {
             identity: thisIdentity,
         });
 
-        this.db = await orbitdb.feed("orbit-db.issues6");
+        this.db = await orbitdb.feed("orbit-db.issues7");
         await this.db.load();
         window.document.getElementById("test1").innerText = JSON.stringify(
             orbitdb.identity
